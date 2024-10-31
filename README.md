@@ -109,9 +109,9 @@ A **Validation Authority (VA)** is a component within the Public Key Infrastruct
 5. **Trust Chain Reinforcement**
    - The VA plays a crucial role in reinforcing the PKI trust chain by constantly monitoring and verifying the status of certificates. When a client checks with a VA, they receive confirmation that the certificate is still backed by the trust chain, supporting integrity and trust in secure communications.
 
-### Certificate Requestor
+### Certificate Requestor (CR)
 
-The **Certificate Requestor (RA)** is an essential participant in the Public Key Infrastructure (PKI) responsible for initiating the process to obtain a digital certificate. The Requestor could be an individual, organization, server, or device seeking to secure communications, authenticate identity, or ensure data integrity through the use of a digital certificate.
+The **Certificate Requestor (CR)** is an essential participant in the Public Key Infrastructure (PKI) responsible for initiating the process to obtain a digital certificate. The Requestor could be an individual, organization, server, or device seeking to secure communications, authenticate identity, or ensure data integrity through the use of a digital certificate.
 
 #### Key Responsibilities of the Certificate Requestor
 
@@ -134,7 +134,7 @@ The **Certificate Requestor (RA)** is an essential participant in the Public Key
    - If the private key associated with the certificate is compromised or the certificate is no longer needed, the Requestor is responsible for notifying the CA to revoke the certificate. This action helps prevent misuse and maintains the security of the PKI system.
 
 
-### Relying Party
+### Relying Party (RP)
 
 The **Relying Party (RP)** is an essential participant in the Public Key Infrastructure (PKI), responsible for trusting and acting upon the validity of a digital certificate. Typically, the Relying Party is an entity (such as a user, application, server, or device) that relies on the certificate to authenticate identities, verify data integrity, and establish secure communication channels.
 
