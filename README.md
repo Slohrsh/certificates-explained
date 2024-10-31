@@ -11,7 +11,8 @@ Digital certificates are essential for secure communications over the internet, 
 - **encryption,**
 - **authentication,**
 - **and data integrity.** 
-  They are widely used to secure websites, sign software, verify email authenticity, and more. This repository serves as an educational resource for anyone seeking to understand certificates and how they contribute to online security.
+
+They are widely used to secure websites, sign software, verify email authenticity, and more. This repository serves as an educational resource for anyone seeking to understand certificates and how they contribute to online security.
 
 ## Certificate Types
 
@@ -39,7 +40,7 @@ There are also specialized certificates tailored to specific use cases:
 - **E-Mail Certificates (S/MIME)**: Enable email encryption and authentication, ensuring the security and authenticity of email communications.
 - **Client Certificates**: Authenticate users or devices, often used in corporate environments to secure access to sensitive systems.
 - **Root and Intermediate Certificates**: Foundational certificates used by CAs to build trust chains, validating other issued certificates.
-- 
+
 
 ## Public Key Infrastructure (PKI)
 
