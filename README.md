@@ -8,8 +8,8 @@ This repository provides a comprehensive overview of digital certificates, inclu
 
 Digital certificates are essential for secure communications over the internet, offering 
 
-- **encryption, **
-- **authentication, **
+- **encryption,**
+- **authentication,**
 - **and data integrity.** 
   They are widely used to secure websites, sign software, verify email authenticity, and more. This repository serves as an educational resource for anyone seeking to understand certificates and how they contribute to online security.
 
