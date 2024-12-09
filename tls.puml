@@ -1,0 +1,25 @@
+@startuml
+actor Client
+participant "Server"
+participant "Certificate Authority (CA)" as CA
+
+Client -> Server: ClientHello (Supported Ciphers, TLS Version)
+Server -> Client: ServerHello (Selected Cipher) + Server Certificate
+Client -> Client: Check Trust Store
+Client -> CA: Verify Certificate
+CA -> Client: Certificate Valid/Invalid  
+alt Certificate Invalid
+    Client -> Server: Terminate Connection
+end
+
+Client -> Server: Key Exchange (Pre-Master Secret or DH Parameters)
+Server -> Client: Key Exchange Response (if applicable)
+
+Client -> Client: Generate Session Keys
+Server -> Server: Generate Session Keys
+
+Client -> Server: Finished (Encrypted with Session Key)
+Server -> Client: Finished (Encrypted with Session Key)
+
+Client <-> Server: Encrypted Data Communication
+@enduml

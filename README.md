@@ -7,11 +7,9 @@ This repository provides a comprehensive overview of digital certificates, inclu
 ## Introduction
 
 Digital certificates are essential for secure communications over the internet, offering 
-
-- **encryption,**
-- **authentication,**
+- **encryption, **
+- **authentication, **
 - **and data integrity.** 
-
 They are widely used to secure websites, sign software, verify email authenticity, and more. This repository serves as an educational resource for anyone seeking to understand certificates and how they contribute to online security.
 
 ## Certificate Types
@@ -40,11 +38,9 @@ There are also specialized certificates tailored to specific use cases:
 - **E-Mail Certificates (S/MIME)**: Enable email encryption and authentication, ensuring the security and authenticity of email communications.
 - **Client Certificates**: Authenticate users or devices, often used in corporate environments to secure access to sensitive systems.
 - **Root and Intermediate Certificates**: Foundational certificates used by CAs to build trust chains, validating other issued certificates.
-
-
+- 
 ## Public Key Infrastructure (PKI)
-
-![alt text](PKI.drawio.svg)
+![PKI](PKI.drawio.svg)
 
 ### Registration Authority (RA)
 
@@ -109,9 +105,9 @@ A **Validation Authority (VA)** is a component within the Public Key Infrastruct
 5. **Trust Chain Reinforcement**
    - The VA plays a crucial role in reinforcing the PKI trust chain by constantly monitoring and verifying the status of certificates. When a client checks with a VA, they receive confirmation that the certificate is still backed by the trust chain, supporting integrity and trust in secure communications.
 
-### Certificate Requestor (CR)
+### Certificate Requestor
 
-The **Certificate Requestor (CR)** is an essential participant in the Public Key Infrastructure (PKI) responsible for initiating the process to obtain a digital certificate. The Requestor could be an individual, organization, server, or device seeking to secure communications, authenticate identity, or ensure data integrity through the use of a digital certificate.
+The **Certificate Requestor (RA)** is an essential participant in the Public Key Infrastructure (PKI) responsible for initiating the process to obtain a digital certificate. The Requestor could be an individual, organization, server, or device seeking to secure communications, authenticate identity, or ensure data integrity through the use of a digital certificate.
 
 #### Key Responsibilities of the Certificate Requestor
 
@@ -134,7 +130,7 @@ The **Certificate Requestor (CR)** is an essential participant in the Public Key
    - If the private key associated with the certificate is compromised or the certificate is no longer needed, the Requestor is responsible for notifying the CA to revoke the certificate. This action helps prevent misuse and maintains the security of the PKI system.
 
 
-### Relying Party (RP)
+### Relying Party
 
 The **Relying Party (RP)** is an essential participant in the Public Key Infrastructure (PKI), responsible for trusting and acting upon the validity of a digital certificate. Typically, the Relying Party is an entity (such as a user, application, server, or device) that relies on the certificate to authenticate identities, verify data integrity, and establish secure communication channels.
 
@@ -160,6 +156,67 @@ The **Relying Party (RP)** is an essential participant in the Public Key Infrast
 
 
 ## How Certificates Work
+
+### TLS/HTTPS
+
+TLS (Transport Layer Security) is the protocol that underpins HTTPS, providing secure communication over a network. A server certificate is a critical component in this process, enabling encrypted communication and verifying the server’s identity. Here’s how it works step-by-step:
+
+1. Client Initiates a Connection
+
+	•	The client (e.g., a web browser) sends a request to the server to establish a secure connection. This request is known as a “ClientHello.”
+	•	The ClientHello includes information about supported cryptographic algorithms (ciphers), the TLS version, and other settings.
+
+2. Server Responds
+
+	•	The server responds with a “ServerHello,” selecting the cryptographic algorithms to use.
+	•	The server also sends its digital certificate as part of the response.
+
+3. Server Certificate
+
+	•	The server certificate is issued by a trusted Certificate Authority (CA) and contains:
+	•	The server’s domain name.
+	•	The server’s public key.
+	•	The CA’s digital signature.
+	•	Expiry and validity information.
+	•	The client validates the certificate:
+	•	Verifies the CA’s signature to ensure the certificate has not been tampered with.
+	•	Checks that the certificate is issued for the requested domain.
+	•	Ensures the certificate is still valid (not expired or revoked).
+
+4. Key Exchange
+
+	•	The client and server perform a key exchange to establish a shared secret for encryption. Depending on the chosen method, this can involve:
+	•	RSA: The client uses the server’s public key to encrypt a randomly generated pre-master secret, which only the server can decrypt with its private key.
+	•	Elliptic Curve Diffie-Hellman (ECDH) or Diffie-Hellman (DH): Both parties contribute to generating a shared secret without directly transmitting it.
+
+5. Session Key Generation
+
+	•	Using the shared secret, the client and server independently compute the same session keys. These keys are symmetric and are used for encrypting communication during the session.
+
+6. Secure Communication
+
+	•	Both parties now use the session keys to encrypt and decrypt data, ensuring confidentiality and integrity.
+
+7. Data Transmission
+
+	•	All subsequent communication between the client and server is encrypted using the session keys.
+	
+	
+	
+![PKI](tls.png)
+
+Key Benefits of Using a Server Certificate in TLS/HTTPS
+
+	1.	Encryption: Prevents eavesdropping by encrypting data in transit.
+	2.	Authentication: Verifies the server’s identity, ensuring users connect to the intended website.
+	3.	Data Integrity: Detects tampering or corruption of data during transmission.
+
+Role of Certificate Authority (CA)
+
+A CA acts as a trusted third party, vouching for the authenticity of the server certificate. Clients trust CAs implicitly because their root certificates are pre-installed in browsers and operating systems.
+
+This combination of encryption, authentication, and integrity is what makes HTTPS secure.
+
 
 ### Certificate Lifecycle
 
