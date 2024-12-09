@@ -157,6 +157,87 @@ The **Relying Party (RP)** is an essential participant in the Public Key Infrast
 
 ## How Certificates Work
 
+### Structure of a digital certificate
+
+| Field                     | Description                                                                                     |
+|---------------------------|-------------------------------------------------------------------------------------------------|
+| Common Name               | The domain name for which the certificate is issued.                                           |
+| Issued By                 | The organization (Certificate Authority) that issued the certificate.                          |
+| Issuing Certificate       | The intermediate certificate used to sign this certificate.                                    |
+| Serial Number             | A unique identifier assigned to the certificate by the Certificate Authority.                  |
+| Valid From                | The start date and time when the certificate becomes valid.                                     |
+| Valid To                  | The end date and time when the certificate expires.                                            |
+| Key Usage                 | Specifies the purpose of the certificate's public key (e.g., digital signature, key encipherment). |
+| Extended Key Usage        | Further specifies the certificate's usage, such as TLS server or client authentication.         |
+| Basic Constraints         | Indicates whether the certificate can act as a CA (e.g., "CA:FALSE" means it cannot issue certificates). |
+| Subject Key Identifier    | A unique identifier for the certificate's public key, helping to differentiate keys.           |
+| Authority Key Identifier  | Identifies the public key associated with the certificate's issuing CA.                        |
+| Authority Info Access     | Provides information about the CA, including an OCSP responder URL and a link to the CA's certificate. |
+| Subject Alternative Names | Lists additional domain names or IP addresses covered by the certificate.                      |
+
+#### Example
+```
+-----BEGIN CERTIFICATE-----
+MIIHbjCCBlagAwIBAgIQB1vO8waJyK3fE+Ua9K/hhzANBgkqhkiG9w0BAQsFADBZ
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMTMwMQYDVQQDEypE
+aWdpQ2VydCBHbG9iYWwgRzIgVExTIFJTQSBTSEEyNTYgMjAyMCBDQTEwHhcNMjQw
+MTMwMDAwMDAwWhcNMjUwMzAxMjM1OTU5WjCBljELMAkGA1UEBhMCVVMxEzARBgNV
+BAgTCkNhbGlmb3JuaWExFDASBgNVBAcTC0xvcyBBbmdlbGVzMUIwQAYDVQQKDDlJ
+bnRlcm5ldMKgQ29ycG9yYXRpb27CoGZvcsKgQXNzaWduZWTCoE5hbWVzwqBhbmTC
+oE51bWJlcnMxGDAWBgNVBAMTD3d3dy5leGFtcGxlLm9yZzCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAIaFD7sO+cpf2fXgCjIsM9mqDgcpqC8IrXi9wga/
+9y0rpqcnPVOmTMNLsid3INbBVEm4CNr5cKlh9rJJnWlX2vttJDRyLkfwBD+dsVvi
+vGYxWTLmqX6/1LDUZPVrynv/cltemtg/1Aay88jcj2ZaRoRmqBgVeacIzgU8+zmJ
+7236TnFSe7fkoKSclsBhPaQKcE3Djs1uszJs8sdECQTdoFX9I6UgeLKFXtg7rRf/
+hcW5dI0zubhXbrW8aWXbCzySVZn0c7RkJMpnTCiZzNxnPXnHFpwr5quqqjVyN/aB
+KkjoP04Zmr+eRqoyk/+lslq0sS8eaYSSHbC5ja/yMWyVhvMCAwEAAaOCA/IwggPu
+MB8GA1UdIwQYMBaAFHSFgMBmx9833s+9KTeqAx2+7c0XMB0GA1UdDgQWBBRM/tAS
+TS4hz2v68vK4TEkCHTGRijCBgQYDVR0RBHoweIIPd3d3LmV4YW1wbGUub3Jnggtl
+eGFtcGxlLm5ldIILZXhhbXBsZS5lZHWCC2V4YW1wbGUuY29tggtleGFtcGxlLm9y
+Z4IPd3d3LmV4YW1wbGUuY29tgg93d3cuZXhhbXBsZS5lZHWCD3d3dy5leGFtcGxl
+Lm5ldDA+BgNVHSAENzA1MDMGBmeBDAECAjApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQG
+CCsGAQUFBwMBBggrBgEFBQcDAjCBnwYDVR0fBIGXMIGUMEigRqBEhkJodHRwOi8v
+Y3JsMy5kaWdpY2VydC5jb20vRGlnaUNlcnRHbG9iYWxHMlRMU1JTQVNIQTI1NjIw
+MjBDQTEtMS5jcmwwSKBGoESGQmh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9EaWdp
+Q2VydEdsb2JhbEcyVExTUlNBU0hBMjU2MjAyMENBMS0xLmNybDCBhwYIKwYBBQUH
+AQEEezB5MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wUQYI
+KwYBBQUHMAKGRWh0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEds
+b2JhbEcyVExTUlNBU0hBMjU2MjAyMENBMS0xLmNydDAMBgNVHRMBAf8EAjAAMIIB
+fQYKKwYBBAHWeQIEAgSCAW0EggFpAWcAdABOdaMnXJoQwzhbbNTfP1LrHfDgjhuN
+acCx+mSxYpo53wAAAY1b0vxkAAAEAwBFMEMCH0BRCgxPbBBVxhcWZ26a8JCe83P1
+JZ6wmv56GsVcyMACIDgpMbEo5HJITTRPnoyT4mG8cLrWjEvhchUdEcWUuk1TAHYA
+fVkeEuF4KnscYWd8Xv340IdcFKBOlZ65Ay/ZDowuebgAAAGNW9L8MAAABAMARzBF
+AiBdv5Z3pZFbfgoM3tGpCTM3ZxBMQsxBRSdTS6d8d2NAcwIhALLoCT9mTMN9OyFz
+IBV5MkXVLyuTf2OAzAOa7d8x2H6XAHcA5tIxY0B3jMEQQQbXcbnOwdJA9paEhvu6
+hzId/R43jlAAAAGNW9L8XwAABAMASDBGAiEA4Koh/VizdQU1tjZ2E2VGgWSXXkwn
+QmiYhmAeKcVLHeACIQD7JIGFsdGol7kss2pe4lYrCgPVc+iGZkuqnj26hqhr0TAN
+BgkqhkiG9w0BAQsFAAOCAQEABOFuAj4N4yNG9OOWNQWTNSICC4Rd4nOG1HRP/Bsn
+rz7KrcPORtb6D+Jx+Q0amhO31QhIvVBYs14gY4Ypyj7MzHgm4VmPXcqLvEkxb2G9
+Qv9hYuEiNSQmm1fr5QAN/0AzbEbCM3cImLJ69kP5bUjfv/76KB57is8tYf9sh5ik
+LGKauxCM/zRIcGa3bXLDafk5S2g5Vr2hs230d/NGW1wZrE+zdGuMxfGJzJP+DAFv
+iBfcQnFg4+1zMEKcqS87oniOyG+60RMM0MdejBD7AS43m9us96Gsun/4kufLQUTI
+FfnzxLutUV++3seshgefQOy5C/ayi8y1VTNmujPCxPCi6Q==
+-----END CERTIFICATE-----
+````
+Decoded:
+
+| Field                     | Value                                                                                  |
+|---------------------------|----------------------------------------------------------------------------------------------|
+| Common Name                 | www.example.org|
+| Issued By                   | DigiCert Inc |
+| Issuing Certificate         | DigiCert Global G2 TLS RSA SHA256 2020 CA1|
+| Serial Number               |075BCEF30689C8ADDF13E51AF4AFE187|
+| Valid From                  | 00:00:00 30 Jan 2024|
+| Valid To                    | 23:59:59 01 Mar 2025 |
+| Key Usage                   | Digital Signature, Key Encipherment|
+| Extended Key Usage          | TLS Web Server Authentication, TLS Web Client Authentication|
+| Basic Constraints           |CA:FALSE|
+|Subject Key Identifier       | 4C:FE:D0:12:4D:2E:21:CF:6B:FA:F2:F2:B8:4C:49:02:1D:31:91:8A|
+|Authority Key Identifier     |74:85:80:C0:66:C7:DF:37:DE:CF:BD:29:37:AA:03:1D:BE:ED:CD:17|
+|Authority Info Access        |OCSP - URI:http://ocsp.digicert.com CA Issuers - URI:http://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt|
+|Subject Alternative Names    |DNS:www.example.org, DNS:example.net, DNS:example.edu, DNS:example.com, DNS:example.org, DNS:www.example.com, DNS:www.example.edu, DNS:www.example.net|
+
 ### TLS/HTTPS
 
 TLS (Transport Layer Security) is the protocol that underpins HTTPS, providing secure communication over a network. A server certificate is a critical component in this process, enabling encrypted communication and verifying the server’s identity. Here’s how it works step-by-step:
@@ -217,6 +298,26 @@ A CA acts as a trusted third party, vouching for the authenticity of the server 
 
 This combination of encryption, authentication, and integrity is what makes HTTPS secure.
 
+### mTLS
+
+TLS (Transport Layer Security) and mTLS (Mutual TLS) are both protocols that provide secure communication over a network. While they share foundational mechanisms, they differ primarily in their purpose and how authentication is handled. 
+Here’s a detailed comparison:
+| Aspect                     | TLS                                                | mTLS                                               |
+|----------------------------|----------------------------------------------------|---------------------------------------------------|
+| Purpose                    | Ensures secure communication by encrypting data and authenticating the server to the client. | Provides secure communication with mutual authentication, verifying both the client and the server. |
+| Authentication             | Only the server is authenticated using a certificate. | Both the server and the client are authenticated using certificates. |
+| Client Certificate         | Not required; the client is not authenticated using a certificate. | Required; the client must present a valid certificate to authenticate itself. |
+| Use Case                   | Commonly used in web browsing, where only the server needs to prove its identity. | Used in environments requiring high security, such as API communication, financial systems, or microservices. |
+| Complexity                 | Easier to set up, as it requires only a server certificate. | More complex to configure, as both server and client certificates need to be managed. |
+| Examples                   | HTTPS websites, web applications, email encryption. | Secure APIs, B2B integrations, internal microservices communication. |
+| Trust Verification         | The client verifies the server's certificate against a trusted Certificate Authority (CA). | Both the client and server verify each other's certificates against trusted CAs. |
+| Certificate Management     | Requires management of server certificates only. | Requires managing certificates for both clients and servers, often necessitating an internal Public Key Infrastructure (PKI). |
+| Scalability                | Scales well for large numbers of users (e.g., public-facing websites). | Can be challenging to scale due to the need for managing numerous client certificates. |
+
+Summary:
+
+	•	TLS: Ensures secure, encrypted communication with server authentication, making it suitable for general web and application security.
+	•	mTLS: Adds an extra layer of security by authenticating both parties, making it ideal for secure, trust-bound environments such as APIs or internal systems.
 
 ### Certificate Lifecycle
 
