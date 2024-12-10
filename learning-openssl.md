@@ -30,6 +30,7 @@
     openssl req -new -key private_key.pem -out request.csr
     ```
   - Provide details such as Country, Organization, and Common Name (e.g., domain name).
+  - Take a look into the CSR with [CSR Decoder](https://ssl-trust.com/SSL-Zertifikate/csr-decoder)
 
 ---
 
@@ -87,8 +88,9 @@
 - **Actions:**
   - PEM to DER:  
     ```bash
-    openssl x509 -in certificate.pem -outform der -out certificate.der
+    openssl x509 -in cert_chain.pem -outform der -out certificate.der
     ```
+    - Validate DER with [DER Docder](https://lapo.it/asn1js/)
   - PEM to PKCS#12 (with private key):  
     ```bash
     openssl pkcs12 -export -in signed_cert.crt -inkey private_key.pem -out certificate.p12
