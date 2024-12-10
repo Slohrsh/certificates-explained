@@ -228,6 +228,7 @@ Digital certificates are crucial for various applications, including:
 
  - [How HTTPS Works](https://howhttps.works/)
  - [Deep Dive PKI](deepdive-pki.md)
+ - [Understanding Certificate Chains: A Simple Guide](https://github.com/nicanorflavier/ssl-certificate-chain-guide)
 
 ## Resources
 
