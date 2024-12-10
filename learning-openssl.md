@@ -90,7 +90,7 @@
     ```bash
     openssl x509 -in cert_chain.pem -outform der -out certificate.der
     ```
-    - Validate DER with [DER Docder](https://lapo.it/asn1js/)
+    - Take a look into DER with [DER Docder](https://lapo.it/asn1js/)
   - PEM to PKCS#12 (with private key):  
     ```bash
     openssl pkcs12 -export -in signed_cert.crt -inkey private_key.pem -out certificate.p12
