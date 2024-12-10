@@ -18,9 +18,9 @@ They are widely used to secure websites, sign software, verify email authenticit
 
 Certificates are classified based on the validation level provided by the Certificate Authority (CA):
 
-- **Domain Validation (DV)**: Basic validation to ensure domain ownership, typically involving DNS or email verification. Suitable for personal websites or internal testing.
-- **Organization Validation (OV)**: Requires the CA to verify the organization's identity, adding credibility. Commonly used by businesses to establish trust with their users.
-- **Extended Validation (EV)**: The highest level of validation, with extensive background checks on the organization. EV certificates often display the organization’s name in the browser’s address bar, enhancing user trust.
+- **Domain Validation**: Basic validation to ensure domain ownership, typically involving DNS or email verification. Suitable for personal websites or internal testing.
+- **Organization Validation**: Requires the CA to verify the organization's identity, adding credibility. Commonly used by businesses to establish trust with their users.
+- **Extended Validation**: The highest level of validation, with extensive background checks on the organization. EV certificates often display the organization’s name in the browser’s address bar, enhancing user trust.
 
 ### Usage and Scope
 
@@ -228,6 +228,7 @@ Digital certificates are crucial for various applications, including:
 
  - [How HTTPS Works](https://howhttps.works/)
  - [Deep Dive PKI](deepdive-pki.md)
+ - [Understanding Certificate Chains: A Simple Guide](https://github.com/nicanorflavier/ssl-certificate-chain-guide)
 
 ## Resources
 
