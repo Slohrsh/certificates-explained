@@ -51,12 +51,12 @@
 ## 5. Sign Certificates with a CA
 - **Goal:** Create a CA and use it to sign certificates.
 - **Actions:**
-  1. Generate a CA:  
+  - Generate a CA:  
      ```bash
      openssl genpkey -algorithm RSA -out ca_private_key.pem
      openssl req -new -x509 -days 3650 -key ca_private_key.pem -out ca_cert.pem
      ```
-  2. Sign a CSR with the CA:  
+  - Sign a CSR with the CA:  
      ```bash
      openssl x509 -req -days 365 -in request.csr -CA ca_cert.pem -CAkey ca_private_key.pem -CAcreateserial -out signed_cert.crt
      ```
@@ -94,7 +94,7 @@
     ```bash
     openssl pkcs12 -export -in signed_cert.crt -inkey private_key.pem -out certificate.p12
     ```
-- Take a look into DER and PKCS#12 with [DER Docder](https://lapo.it/asn1js/)
+  - Take a look into DER and PKCS#12 with [DER Docder](https://lapo.it/asn1js/)
 ---
 
 ## 9. Test Certificates in TLS/SSL Connections
