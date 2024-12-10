@@ -90,12 +90,11 @@
     ```bash
     openssl x509 -in cert_chain.pem -outform der -out certificate.der
     ```
-    - Take a look into DER with [DER Docder](https://lapo.it/asn1js/)
   - PEM to PKCS#12 (with private key):  
     ```bash
     openssl pkcs12 -export -in signed_cert.crt -inkey private_key.pem -out certificate.p12
     ```
-
+- Take a look into DER and PKCS#12 with [DER Docder](https://lapo.it/asn1js/)
 ---
 
 ## 9. Test Certificates in TLS/SSL Connections
