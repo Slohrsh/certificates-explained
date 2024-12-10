@@ -336,6 +336,10 @@ Digital certificates are crucial for various applications, including:
 - **API and IoT Communication**: Ensuring secure communication between servers, APIs, and IoT devices.
 - **Software Distribution**: Ensuring software authenticity and integrity through code-signing certificates.
 
+## Further Readings
+
+ - [How HTTPS Works](https://howhttps.works/)
+
 ## Resources
 
 For more detailed information, refer to the following:
